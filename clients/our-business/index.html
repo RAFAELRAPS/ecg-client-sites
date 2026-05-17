@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Business | Innovation & Excellence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #0f172a;
+            --color-card: #1e293b;
+            --color-text: #f8fafc;
+            --color-text-muted: #94a3b8;
+            --color-accent: #0f3460;
+            --color-secondary: #e94560;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        section {
+            padding: 100px 5%;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: 0.8s ease-out;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h1, h2, h3 {
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--color-text-muted);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background-color: var(--color-secondary);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(233, 69, 96, 0.3);
+            filter: brightness(1.1);
+        }
+
+        /* Nav */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        nav.scrolled {
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 15px 5%;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--color-text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--color-secondary);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .hamburger span {
+            width: 30px;
+            height: 3px;
+            background-color: var(--color-text);
+            border-radius: 3px;
+            transition: var(--transition);
+        }
+
+        /* Hero */
+        #hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-image: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), url('images/hero.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 0 5%;
+            opacity: 1;
+            transform: none;
+        }
+
+        #hero h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            margin-bottom: 1rem;
+        }
+
+        #hero p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: #cbd5e1;
+        }
+
+        /* About */
+        #about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        /* Services & Why Us Cards */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .card {
+            background: var(--color-card);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--color-secondary);
+        }
+
+        .card i {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--color-secondary);
+            font-size: 2rem;
+        }
+
+        /* Process */
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            position: relative;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--color-secondary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin: 0 auto 20px;
+        }
+
+        /* Testimonials */
+        .testimonial-card {
+            background: rgba(255,255,255,0.03);
+            padding: 30px;
+            border-radius: 15px;
+            font-style: italic;
+        }
+
+        .stars {
+            color: #fbbf24;
+            margin-bottom: 15px;
+        }
+
+        /* Contact */
+        #contact {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 80px;
+        }
+
+        form {
+            display: grid;
+            gap: 20px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 15px;
+            background: var(--color-card);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: white;
+            border-radius: 8px;
+            font-family: inherit;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--color-secondary);
+        }
+
+        .contact-info div {
+            margin-bottom: 30px;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+            color: var(--color-secondary);
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 5%;
+            background: #070b14;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: var(--color-text-muted);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--color-secondary);
+        }
+
+        #thank-you {
+            display: none;
+            text-align: center;
+            padding: 40px;
+            background: var(--color-card);
+            border-radius: 15px;
+        }
+
+        /* Mobile */
+        @media (max-width: 992px) {
+            #about, #contact {
+                grid-template-columns: 1fr;
+            }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--color-bg);
+                flex-direction: column;
+                padding: 40px;
+                text-align: center;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .hamburger {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="nav">
+        <div class="logo">
+            <img src="images/logo.png" style="max-height:55px;object-fit:contain" alt="Our Business">
+        </div>
+        <ul class="nav-links">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#why-us">Why Us</a></li>
+            <li><a href="#process">Process</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <section id="hero">
+        <div>
+            <h1>Our Business</h1>
+            <p>Empowering our clients through innovation and excellence. Top-tier solutions driving growth and efficiency since 2011.</p>
+            <a href="#contact" class="btn">Get a Free Quote</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="about-text">
+            <h2 style="color:var(--color-secondary)">About Us</h2>
+            <p>With over 15 years of industry experience, Our Business is dedicated to providing top-tier solutions that drive growth and efficiency. Our mission is to empower our clients through innovation and excellence.</p>
+            <p>We pride ourselves on a foundation of integrity, forward-thinking strategy, and a relentless commitment to our clients' success in an ever-evolving marketplace.</p>
+        </div>
+        <div class="about-img">
+            <img src="images/about.jpg" alt="About Our Business" style="width:100%;border-radius:12px;box-shadow: 0 20px 40px rgba(0,0,0,0.4);">
+        </div>
+    </section>
+
+    <section id="services">
+        <div style="text-align:center; max-width: 800px; margin: 0 auto;">
+            <h2>Our Services</h2>
+            <p>Comprehensive solutions tailored to your unique business needs.</p>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <h3>Strategic Planning</h3>
+                <p>Aligning your business goals with actionable roadmaps for sustainable long-term success.</p>
+            </div>
+            <div class="card">
+                <h3>Digital Transformation</h3>
+                <p>Integrating cutting-edge technology into every area of your business for maximum performance.</p>
+            </div>
+            <div class="card">
+                <h3>Market Analysis</h3>
+                <p>In-depth insights and data-driven research to help you stay ahead of the competition.</p>
+            </div>
+            <div class="card">
+                <h3>Operations Management</h3>
+                <p>Optimizing your internal processes to increase productivity and reduce overhead costs.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="why-us">
+        <div style="text-align:center; max-width: 800px; margin: 0 auto;">
+            <h2>Why Choose Us</h2>
+            <p>What sets Our Business apart from the rest of the industry.</p>
+        </div>
+        <div class="grid">
+            <div class="card" style="text-align:center">
+                <div class="step-number" style="background:var(--color-accent)">1</div>
+                <h3>Expert Team</h3>
+                <p>Our professionals bring decades of combined experience across diverse sectors.</p>
+            </div>
+            <div class="card" style="text-align:center">
+                <div class="step-number" style="background:var(--color-accent)">2</div>
+                <h3>Proven Track Record</h3>
+                <p>A history of successful implementations and satisfied partners globally.</p>
+            </div>
+            <div class="card" style="text-align:center">
+                <div class="step-number" style="background:var(--color-accent)">3</div>
+                <h3>Customer-Centric</h3>
+                <p>We build relationships, not just projects. Your growth is our primary metric.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="process" style="background: rgba(255,255,255,0.02)">
+        <div style="text-align:center; max-width: 800px; margin: 0 auto; margin-bottom: 60px;">
+            <h2>Our Process</h2>
+            <p>A streamlined approach to taking your vision from concept to reality.</p>
+        </div>
+        <div class="process-steps">
+            <div class="step">
+                <div class="step-number">01</div>
+                <h4>Consultation</h4>
+                <p>Understanding your needs and defining project scope.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">02</div>
+                <h4>Strategy Development</h4>
+                <p>Crafting a bespoke plan tailored to your objectives.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">03</div>
+                <h4>Implementation</h4>
+                <p>Executing the strategy with precision and agility.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">04</div>
+                <h4>Ongoing Support</h4>
+                <p>Continuous monitoring and optimization for growth.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials">
+        <div style="text-align:center; max-width: 800px; margin: 0 auto; margin-bottom: 60px;">
+            <h2>Client Testimonials</h2>
+        </div>
+        <div class="grid">
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>"The team at Our Business transformed our operations. Their insight was invaluable."</p>
+                <div style="margin-top:20px; font-weight:700; font-style: normal;">— John D., CEO</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>"Professional and highly skilled. They delivered exactly what they promised on time."</p>
+                <div style="margin-top:20px; font-weight:700; font-style: normal;">— Sarah M., Director</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>"The best decision for our growth. Their strategic planning is second to none."</p>
+                <div style="margin-top:20px; font-weight:700; font-style: normal;">— Michael R., Founder</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="contact-form">
+            <h2>Get a Quote</h2>
+            <p>Ready to start your journey? Fill out the form below.</p>
+            <form id="quoteForm" onsubmit="handleSubmit(event)">
+                <input type="text" placeholder="Full Name" required>
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <input type="email" placeholder="Email Address" required>
+                    <input type="tel" placeholder="Phone Number">
+                </div>
+                <textarea rows="5" placeholder="Project Details" required></textarea>
+                <button type="submit" class="btn">Submit Request</button>
+            </form>
+            <div id="thank-you">
+                <h3 style="color: var(--color-secondary)">Thank You!</h3>
+                <p>Your request has been received. Our team will contact you within 24 hours.</p>
+            </div>
+        </div>
+        <div class="contact-info">
+            <h2>Contact Details</h2>
+            <div>
+                <h3>Our Location</h3>
+                <p>123 Business Way, Suite 100<br>City, State, 12345</p>
+            </div>
+            <div>
+                <h3>Call Us</h3>
+                <p>555-0199</p>
+            </div>
+            <div>
+                <h3>Email Us</h3>
+                <p>hello@ourbusiness.com</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <img src="images/logo.png" style="max-height:55px;object-fit:contain" alt="Our Business">
+        <ul class="footer-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#why-us">Why Us</a></li>
+            <li><a href="#process">Process</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <p>&copy; 2026 Our Business. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Scroll Effect for Nav
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu
+        function toggleMenu() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        }
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('.nav-links').classList.remove('active');
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    // Update Nav Links
+                    const id = entry.target.getAttribute('id');
+                    document.querySelectorAll('.nav-links a').forEach(a => {
+                        a.classList.remove('active');
+                        if (a.getAttribute('href') === `#${id}`) {
+                            a.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Form Submission
+        function handleSubmit(e) {
+            e.preventDefault();
+            document.getElementById('quoteForm').style.display = 'none';
+            document.getElementById('thank-you').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
