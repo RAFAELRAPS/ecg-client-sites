@@ -3,47 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Business - Innovate. Elevate. Succeed.</title>
+    <title>Our Business - Professional Solutions</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         :root {
-            --color-primary: #0f3460;
-            --color-secondary: #e94560; /* Used for subtle accents */
-            --color-accent: #e94560; /* More vibrant for CTAs/highlights */
             --color-bg: #0f172a; /* Dark theme background */
-            --color-text: #f8fafc; /* Light text for dark theme */
-            --color-card-bg: #1e293b; /* Slightly lighter card background */
-            --color-border: #334155; /* Subtle border color */
-            --color-btn-hover: #d23a54; /* Slightly darker accent for hover */
-            --color-overlay: rgba(0, 0, 0, 0.45);
-
-            --font-family-primary: 'Inter', sans-serif;
-            --container-max-width: 1200px;
-            --spacing-xs: 0.5rem;
-            --spacing-sm: 1rem;
-            --spacing-md: 2rem;
-            --spacing-lg: 3rem;
-            --spacing-xl: 4rem;
+            --color-text: #f8fafc; /* Light text for dark background */
+            --color-accent: #e94560; /* Secondary brand color, for CTAs/highlights */
+            --color-primary: #0f3460; /* Primary brand color, for darker elements */
+            --color-card-bg: #1a202c; /* Slightly lighter bg for cards */
+            --color-border: rgba(248, 250, 252, 0.1); /* Light border on dark theme */
+            --max-width: 1200px;
+            --header-height: 80px;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
         }
 
-        /* Base styles */
+        /* Base Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
-        body {
-            font-family: var(--font-family-primary);
-            color: var(--color-text);
-            background-color: var(--color-bg);
-            line-height: 1.6;
-            overflow-x: hidden;
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
         }
 
         a {
@@ -52,54 +50,66 @@
         }
 
         a:hover {
-            color: var(--color-btn-hover);
+            text-decoration: underline;
         }
 
         h1, h2, h3, h4, h5, h6 {
             color: var(--color-text);
-            margin-bottom: var(--spacing-sm);
             line-height: 1.2;
+            margin-bottom: 1rem;
         }
 
-        h1 { font-size: 2.8rem; font-weight: 700; }
-        h2 { font-size: 2.2rem; font-weight: 600; }
-        h3 { font-size: 1.8rem; font-weight: 600; }
-        p { margin-bottom: var(--spacing-sm); }
+        p {
+            margin-bottom: 1rem;
+        }
 
         .container {
-            max-width: var(--container-max-width);
+            max-width: var(--max-width);
             margin: 0 auto;
-            padding: 0 var(--spacing-sm);
-        }
-
-        .section-padding {
-            padding: var(--spacing-xl) 0;
-        }
-
-        .text-center {
-            text-align: center;
+            padding: 0 1.5rem;
         }
 
         .btn {
             display: inline-block;
             background-color: var(--color-accent);
             color: var(--color-text);
-            padding: var(--spacing-sm) var(--spacing-md);
+            padding: 0.8rem 1.8rem;
             border-radius: 8px;
-            font-weight: 500;
+            font-weight: 600;
             transition: background-color 0.3s ease, transform 0.2s ease;
             border: none;
             cursor: pointer;
-            font-size: 1rem;
+            text-align: center;
         }
 
         .btn:hover {
-            background-color: var(--color-btn-hover);
+            background-color: #d83e58; /* Slightly darker accent */
             transform: translateY(-2px);
-            color: var(--color-text);
+            text-decoration: none;
         }
 
-        /* Fade-in animation */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeInTop 1s ease-out forwards;
+            opacity: 0;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-header p {
+            font-size: 1.15rem;
+            color: rgba(248, 250, 252, 0.8);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Fade-in animation for sections */
         .fade-in {
             opacity: 0;
             transform: translateY(20px);
@@ -111,12 +121,14 @@
             transform: translateY(0);
         }
 
-        /* 1. Nav */
+        /* Navigation */
         #nav {
-            background-color: var(--color-card-bg); /* Slightly lighter for nav */
-            padding: var(--spacing-sm) 0;
-            position: sticky;
+            position: fixed;
             top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(15, 23, 42, 0.95); /* Semi-transparent dark bg */
+            backdrop-filter: blur(8px);
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
@@ -125,7 +137,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
+            height: var(--header-height);
         }
 
         #nav .logo img {
@@ -135,77 +147,113 @@
         }
 
         #nav .nav-links {
-            display: none; /* Hidden by default for mobile */
-            flex-direction: column;
-            width: 100%;
-            text-align: center;
-            margin-top: var(--spacing-sm);
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
         }
 
         #nav .nav-links a {
             color: var(--color-text);
-            padding: var(--spacing-xs) var(--spacing-sm);
             font-weight: 500;
-            display: block;
-            border-bottom: 1px solid var(--color-border);
-            transition: color 0.3s ease, background-color 0.3s ease;
-        }
-        
-        #nav .nav-links a:last-child {
-            border-bottom: none;
+            font-size: 1.05rem;
+            position: relative;
+            padding: 5px 0;
+            transition: color 0.3s ease;
         }
 
+        #nav .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--color-accent);
+            transition: width 0.3s ease;
+        }
+
+        #nav .nav-links a:hover::after,
+        #nav .nav-links a.active::after {
+            width: 100%;
+        }
+        
         #nav .nav-links a:hover,
         #nav .nav-links a.active {
             color: var(--color-accent);
-            background-color: var(--color-primary);
         }
 
-        #nav .hamburger {
-            display: block;
-            background: none;
-            border: none;
-            font-size: 1.8rem;
-            color: var(--color-text);
+        .hamburger {
+            display: none;
+            flex-direction: column;
             cursor: pointer;
-            padding: var(--spacing-xs);
+            gap: 6px;
+            z-index: 1001;
         }
 
-        #nav .nav-links.active {
-            display: flex;
+        .hamburger .bar {
+            width: 25px;
+            height: 3px;
+            background-color: var(--color-text);
+            transition: all 0.3s ease;
+            border-radius: 2px;
         }
 
-        @media (min-width: 768px) {
-            #nav .nav-links {
+        /* Mobile Nav Specifics */
+        @media (max-width: 768px) {
+            .hamburger {
                 display: flex;
-                flex-direction: row;
-                width: auto;
-                margin-top: 0;
+            }
+
+            #nav .nav-links {
+                position: fixed;
+                top: 0; 
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: var(--color-bg);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transform: translateX(100%);
+                transition: transform 0.4s ease-in-out;
+                gap: 2rem;
+            }
+
+            #nav .nav-links.active {
+                transform: translateX(0);
             }
 
             #nav .nav-links a {
-                border-bottom: none;
-                padding: var(--spacing-xs) var(--spacing-sm);
+                font-size: 1.5rem;
             }
-            
-            #nav .hamburger {
-                display: none;
+
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(9px) rotate(45deg);
+            }
+
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-9px) rotate(-45deg);
             }
         }
 
-        /* 2. Hero */
+        /* Hero Section */
         #hero {
             position: relative;
-            background-image: url('images/hero.jpg');
-            background-size: cover;
-            background-position: center;
-            color: var(--color-text);
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 70vh; /* Responsive height */
-            padding: var(--spacing-xl) 0;
             text-align: center;
+            color: var(--color-text);
+            background-image: url('images/hero.jpg');
+            background-size: cover;
+            background-position: center;
+            padding-top: var(--header-height); /* Offset for sticky nav */
+            overflow: hidden; /* To contain ::before */
         }
 
         #hero::before {
@@ -215,51 +263,64 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: var(--color-overlay);
+            background: rgba(0, 0, 0, 0.45); /* Overlay for text readability */
             z-index: 1;
         }
 
         #hero .hero-content {
             position: relative;
             z-index: 2;
-            max-width: 800px;
-            padding: var(--spacing-md);
+            max-width: 900px;
+            animation: fadeIn 1s ease-out forwards;
+            opacity: 0;
+            animation-delay: 0.3s;
         }
 
         #hero h1 {
-            font-size: 3rem;
-            margin-bottom: var(--spacing-md);
+            font-size: 3.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
 
         #hero p {
-            font-size: 1.2rem;
-            margin-bottom: var(--spacing-lg);
-            opacity: 0.9;
+            font-size: 1.5rem;
+            margin-bottom: 2.5rem;
+            color: rgba(248, 250, 252, 0.9);
+            text-shadow: 0 1px 3px rgba(0,0,0,0.4);
         }
-
-        @media (min-width: 768px) {
+        
+        @media (max-width: 1024px) {
             #hero h1 {
-                font-size: 4.5rem;
+                font-size: 3rem;
             }
             #hero p {
-                font-size: 1.5rem;
+                font-size: 1.2rem;
             }
         }
 
-        /* 3. About */
+        @media (max-width: 768px) {
+            #hero h1 {
+                font-size: 2.5rem;
+            }
+            #hero p {
+                font-size: 1rem;
+            }
+            #hero .hero-content {
+                padding: 0 1rem;
+            }
+        }
+
+        /* About Section */
+        #about {
+            padding: 6rem 0;
+        }
+
         #about .about-content {
             display: grid;
             grid-template-columns: 1fr;
-            gap: var(--spacing-xl);
+            gap: 3rem;
             align-items: center;
-        }
-
-        #about img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            border-radius: 12px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
         }
 
         @media (min-width: 768px) {
@@ -268,257 +329,370 @@
             }
         }
 
-        /* 4. Services */
+        #about .about-text h3 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        #about .about-text p {
+            color: rgba(248, 250, 252, 0.8);
+            margin-bottom: 1rem;
+        }
+
+        #about .about-image img {
+            width: 100%;
+            height: 380px; 
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        #about .about-image img:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Services Section */
+        #services {
+            padding: 6rem 0;
+            background-color: var(--color-primary); /* Use primary brand color for depth */
+        }
+
         #services .service-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: var(--spacing-md);
-            margin-top: var(--spacing-lg);
+            gap: 2rem;
         }
 
         #services .service-card {
             background-color: var(--color-card-bg);
-            padding: var(--spacing-md);
+            padding: 2.5rem;
             border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
             text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            border: 1px solid var(--color-border);
         }
 
         #services .service-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
         }
 
         #services .service-card i {
-            font-size: 3rem;
+            font-size: 3.5rem;
             color: var(--color-accent);
-            margin-bottom: var(--spacing-sm);
+            margin-bottom: 1.5rem;
+            display: block;
         }
 
         #services .service-card h3 {
-            margin-bottom: var(--spacing-xs);
-            color: var(--color-accent);
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
         }
 
         #services .service-card p {
+            color: rgba(248, 250, 252, 0.7);
             font-size: 0.95rem;
-            opacity: 0.8;
-        }
-
-        /* 5. Why Us */
-        #why-us {
-            background-color: var(--color-primary); /* Use primary for a section */
-        }
-
-        #why-us .benefit-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: var(--spacing-md);
-            margin-top: var(--spacing-lg);
-        }
-
-        #why-us .benefit-card {
-            background-color: var(--color-card-bg);
-            padding: var(--spacing-md);
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease;
-        }
-
-        #why-us .benefit-card:hover {
-            transform: scale(1.03);
-        }
-
-        #why-us .benefit-card i {
-            font-size: 2.5rem;
-            color: var(--color-accent);
-            margin-bottom: var(--spacing-sm);
-        }
-
-        #why-us .benefit-card h3 {
-            color: var(--color-accent);
-            margin-bottom: var(--spacing-xs);
-        }
-
-        /* 6. Process */
-        #process .process-steps {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: var(--spacing-lg);
-            margin-top: var(--spacing-lg);
-        }
-
-        #process .process-step {
-            background-color: var(--color-card-bg);
-            padding: var(--spacing-md);
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-            display: flex;
-            align-items: flex-start;
-        }
-        
-        #process .process-step .step-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--color-accent);
-            margin-right: var(--spacing-md);
-            flex-shrink: 0;
-            line-height: 1;
-        }
-
-        #process .process-step .step-content h3 {
-            margin-top: 0;
-            margin-bottom: var(--spacing-xs);
-            color: var(--color-accent);
-        }
-
-        #process .process-step .step-content p {
-            opacity: 0.8;
             margin-bottom: 0;
         }
 
+        /* Why Us Section */
+        #why-us {
+            padding: 6rem 0;
+        }
+
+        #why-us .why-us-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        #why-us .why-us-card {
+            background-color: var(--color-card-bg);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+            text-align: center;
+            transition: transform 0.3s ease;
+            border: 1px solid var(--color-border);
+        }
+        
+        #why-us .why-us-card:hover {
+            transform: translateY(-8px);
+        }
+
+        #why-us .why-us-card i {
+            font-size: 3.5rem;
+            color: var(--color-accent);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        #why-us .why-us-card h3 {
+            font-size: 1.7rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        #why-us .why-us-card p {
+            color: rgba(248, 250, 252, 0.7);
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+
+        /* Process Section */
+        #process {
+            padding: 6rem 0;
+            background-color: var(--color-primary);
+        }
+
+        #process .process-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            counter-reset: process-step;
+        }
+
         @media (min-width: 768px) {
-            #process .process-steps {
+            #process .process-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+        }
+
+        #process .process-step {
+            position: relative;
+            padding: 2.5rem;
+            background-color: var(--color-card-bg);
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+            text-align: center;
+            border: 1px solid var(--color-border);
+        }
+
+        #process .process-step::before {
+            counter-increment: process-step;
+            content: counter(process-step);
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--color-accent);
+            color: var(--color-text);
+            font-size: 1.8rem;
+            font-weight: 700;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border: 3px solid var(--color-primary);
+        }
+
+        #process .process-step h3 {
+            margin-top: 1.5rem;
+            font-size: 1.7rem;
+            font-weight: 600;
+        }
+
+        #process .process-step p {
+            color: rgba(248, 250, 252, 0.7);
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+
+        /* Testimonials Section */
+        #testimonials {
+            padding: 6rem 0;
+        }
+
+        #testimonials .testimonial-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            #testimonials .testimonial-grid {
                 grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             }
         }
 
-        /* 7. Testimonials */
-        #testimonials .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: var(--spacing-md);
-            margin-top: var(--spacing-lg);
-        }
-
         #testimonials .testimonial-card {
             background-color: var(--color-card-bg);
-            padding: var(--spacing-md);
+            padding: 2.5rem;
             border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            border: 1px solid var(--color-border);
         }
 
-        #testimonials .stars {
-            color: gold;
-            margin-bottom: var(--spacing-sm);
+        #testimonials .testimonial-card .stars {
+            color: gold; 
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
         }
 
-        #testimonials .quote {
+        #testimonials .testimonial-card blockquote {
             font-style: italic;
-            margin-bottom: var(--spacing-sm);
-            opacity: 0.9;
-            flex-grow: 1;
+            margin-bottom: 1.5rem;
+            color: rgba(248, 250, 252, 0.8);
+            font-size: 1.05rem;
+            flex-grow: 1; /* Make quotes take equal height */
         }
 
-        #testimonials .client-name {
+        #testimonials .testimonial-card .client-name {
             font-weight: 600;
             color: var(--color-accent);
-            text-align: right;
-            margin-top: var(--spacing-sm);
+            margin-top: auto; /* Push client name to bottom */
+            font-size: 1.1rem;
         }
 
-        /* 8. Contact */
+        /* Contact Section */
+        #contact {
+            padding: 6rem 0;
+            background-color: var(--color-primary);
+        }
+
         #contact .contact-content {
             display: flex;
             flex-direction: column;
-            gap: var(--spacing-xl);
+            gap: 3rem;
+        }
+
+        @media (min-width: 992px) {
+            #contact .contact-content {
+                flex-direction: row;
+                justify-content: space-between;
+            }
         }
 
         #contact .contact-form,
         #contact .contact-info {
             flex: 1;
             background-color: var(--color-card-bg);
-            padding: var(--spacing-lg);
+            padding: 3rem;
             border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        #contact .form-group {
-            margin-bottom: var(--spacing-md);
-        }
-
-        #contact label {
-            display: block;
-            margin-bottom: var(--spacing-xs);
-            font-weight: 500;
-        }
-
-        #contact input,
-        #contact textarea {
-            width: 100%;
-            padding: var(--spacing-sm);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
             border: 1px solid var(--color-border);
-            border-radius: 8px;
-            background-color: var(--color-bg);
-            color: var(--color-text);
-            font-family: var(--font-family-primary);
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
         }
-
-        #contact input:focus,
-        #contact textarea:focus {
-            outline: none;
-            border-color: var(--color-accent);
-            box-shadow: 0 0 0 3px rgba(var(--color-accent), 0.2);
+        
+        #contact .contact-form {
+            max-width: 600px; 
         }
-
-        #contact textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        #contact .contact-info p {
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-sm);
-            margin-bottom: var(--spacing-sm);
-        }
-
-        #contact .contact-info p i {
-            color: var(--color-accent);
-            font-size: 1.2rem;
-            flex-shrink: 0;
-        }
-
-        #contact #thank-you-message {
-            display: none;
-            background-color: var(--color-primary);
-            color: var(--color-text);
-            padding: var(--spacing-md);
-            border-radius: 8px;
-            text-align: center;
-            margin-top: var(--spacing-md);
-        }
-
-        @media (min-width: 768px) {
-            #contact .contact-content {
-                flex-direction: row;
+        @media (min-width: 992px) {
+            #contact .contact-form {
+                margin-right: 3rem;
             }
         }
 
-        /* 9. Footer */
-        #footer {
-            background-color: var(--color-card-bg);
-            padding: var(--spacing-xl) 0 var(--spacing-md);
+
+        #contact .contact-form h2,
+        #contact .contact-info h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
             color: var(--color-text);
-            text-align: center;
-            border-top: 1px solid var(--color-border);
         }
 
-        #footer .footer-content {
+        #contact .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        #contact .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: rgba(248, 250, 252, 0.9);
+        }
+
+        #contact .form-group input,
+        #contact .form-group textarea {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            background-color: rgba(248, 250, 252, 0.05);
+            color: var(--color-text);
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        #contact .form-group input:focus,
+        #contact .form-group textarea:focus {
+            border-color: var(--color-accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(233, 69, 96, 0.3);
+        }
+
+        #contact .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        #contact .submit-message {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background-color: var(--color-accent);
+            color: var(--color-text);
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            display: none; 
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        #contact .contact-info ul {
+            list-style: none;
+        }
+
+        #contact .contact-info ul li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            color: rgba(248, 250, 252, 0.8);
+        }
+
+        #contact .contact-info ul li i {
+            color: var(--color-accent);
+            font-size: 1.4rem;
+            margin-top: 0.2rem;
+        }
+
+        #contact .contact-info ul li span {
+            display: block;
+        }
+
+        #contact .contact-info ul li a {
+            color: rgba(248, 250, 252, 0.8);
+            transition: color 0.3s ease;
+        }
+
+        #contact .contact-info ul li a:hover {
+            color: var(--color-accent);
+            text-decoration: none;
+        }
+
+
+        /* Footer */
+        #footer {
+            background-color: var(--color-bg);
+            padding: 4rem 0 2rem;
+            text-align: center;
+            border-top: 1px solid var(--color-border);
+            margin-top: auto; 
+        }
+
+        #footer .container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: var(--spacing-md);
+            gap: 2rem;
         }
 
         #footer .footer-logo img {
@@ -528,356 +702,442 @@
             margin: 0 auto;
         }
 
-        #footer .footer-nav {
+        #footer .footer-nav-links {
+            list-style: none;
             display: flex;
-            flex-wrap: wrap;
+            flex-wrap: wrap; 
             justify-content: center;
-            gap: var(--spacing-md);
-            margin-top: var(--spacing-sm);
+            gap: 1.5rem;
         }
 
-        #footer .footer-nav a {
-            color: var(--color-text);
-            font-weight: 500;
+        #footer .footer-nav-links a {
+            color: rgba(248, 250, 252, 0.7);
+            font-weight: 400;
+            font-size: 0.95rem;
             transition: color 0.3s ease;
         }
 
-        #footer .footer-nav a:hover {
+        #footer .footer-nav-links a:hover {
             color: var(--color-accent);
+            text-decoration: none;
         }
 
         #footer .copyright {
-            margin-top: var(--spacing-md);
+            margin-top: 1rem;
             font-size: 0.9rem;
-            opacity: 0.7;
+            color: rgba(248, 250, 252, 0.6);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInTop {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInBottom {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
 <body>
     <header id="nav">
         <div class="container">
-            <a href="#" class="logo">
+            <a href="#hero" class="logo">
                 <img src="images/logo.png" alt="logo" style="max-height:55px;object-fit:contain;display:block">
             </a>
-            <button class="hamburger" aria-label="Toggle navigation">
-                <i class="fas fa-bars"></i>
-            </button>
             <nav class="nav-links">
-                <a href="#about">About</a>
-                <a href="#services">Services</a>
-                <a href="#why-us">Why Us</a>
-                <a href="#process">Process</a>
-                <a href="#contact">Contact</a>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#why-us">Why Us</a></li>
+                <li><a href="#process">Process</a></li>
+                <li><a href="#contact">Contact</a></li>
             </nav>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
         </div>
     </header>
 
-    <section id="hero">
-        <div class="hero-content fade-in">
-            <h1>Innovate. Elevate. Succeed.</h1>
-            <p>Transforming Visions into Reality with Cutting-Edge Solutions.</p>
-            <a href="#contact" class="btn">Get a Free Quote</a>
-        </div>
-    </section>
-
-    <section id="about" class="section-padding">
-        <div class="container">
-            <h2 class="text-center fade-in">Who We Are</h2>
-            <div class="about-content">
-                <div class="about-text fade-in">
-                    <p>At Our Business, we believe in the power of innovation to drive growth and create lasting impact. Founded on principles of integrity and excellence, we are a dedicated team of professionals committed to delivering exceptional results for our clients.</p>
-                    <p>Our journey began with a clear mission: to provide tailored solutions that address the unique challenges and opportunities of modern businesses. We pride ourselves on our collaborative approach, working closely with clients to understand their goals and develop strategies that lead to measurable success.</p>
-                    <p>With years of collective experience across various industries, we bring a wealth of knowledge and expertise to every project. We're not just service providers; we're partners invested in your triumph.</p>
-                </div>
-                <div class="about-image fade-in">
-                    <img src="images/about.jpg" alt="Our Business Team collaborating" style="width:100%;height:300px;object-fit:cover;border-radius:12px">
-                </div>
+    <main>
+        <section id="hero">
+            <div class="hero-content">
+                <h1>Unlock Your Business Potential with Our Expertise</h1>
+                <p>We provide innovative and tailored solutions to help your business thrive in a dynamic market.</p>
+                <a href="#contact" class="btn">Get a Free Quote</a>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="services" class="section-padding">
-        <div class="container text-center">
-            <h2 class="fade-in">Our Core Services</h2>
-            <p class="fade-in">We offer a comprehensive suite of services designed to empower your business.</p>
-            <div class="service-grid">
-                <div class="service-card fade-in">
-                    <i class="fas fa-chart-line"></i>
-                    <h3>Strategic Consulting</h3>
-                    <p>Expert guidance to define your vision, set achievable goals, and navigate complex market landscapes for sustainable growth.</p>
+        <section id="about" class="fade-in">
+            <div class="container">
+                <div class="section-header">
+                    <h2>About Our Business</h2>
+                    <p>Dedicated to excellence and client success, we are your trusted partner in navigating complex challenges and achieving remarkable growth.</p>
                 </div>
-                <div class="service-card fade-in">
-                    <i class="fas fa-desktop"></i>
-                    <h3>Web Development</h3>
-                    <p>Crafting responsive, high-performance websites and web applications tailored to your business needs and user experience.</p>
-                </div>
-                <div class="service-card fade-in">
-                    <i class="fas fa-bullhorn"></i>
-                    <h3>Digital Marketing</h3>
-                    <p>Leveraging SEO, social media, and content strategies to amplify your brand presence and engage your target audience effectively.</p>
-                </div>
-                <div class="service-card fade-in">
-                    <i class="fas fa-cloud"></i>
-                    <h3>Cloud Solutions</h3>
-                    <p>Implementing scalable and secure cloud infrastructure to optimize operations, reduce costs, and enhance data accessibility.</p>
-                </div>
-                <div class="service-card fade-in">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>Cybersecurity</h3>
-                    <p>Protecting your digital assets with robust security measures, threat detection, and proactive vulnerability management.</p>
-                </div>
-                <div class="service-card fade-in">
-                    <i class="fas fa-headset"></i>
-                    <h3>Support & Maintenance</h3>
-                    <p>Providing ongoing technical support, system updates, and maintenance to ensure seamless operation and peace of mind.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="why-us" class="section-padding">
-        <div class="container text-center">
-            <h2 class="fade-in">Why Choose Our Business?</h2>
-            <p class="fade-in">Discover the advantages of partnering with a team that puts your success first.</p>
-            <div class="benefit-grid">
-                <div class="benefit-card fade-in">
-                    <i class="fas fa-lightbulb"></i>
-                    <h3>Innovative Solutions</h3>
-                    <p>We leverage the latest technologies and creative thinking to deliver solutions that stand out and drive progress.</p>
-                </div>
-                <div class="benefit-card fade-in">
-                    <i class="fas fa-handshake"></i>
-                    <h3>Client-Centric Approach</h3>
-                    <p>Your goals are our priority. We listen, adapt, and build strong partnerships based on trust and mutual success.</p>
-                </div>
-                <div class="benefit-card fade-in">
-                    <i class="fas fa-award"></i>
-                    <h3>Proven Expertise</h3>
-                    <p>Our team comprises seasoned professionals with deep industry knowledge, ensuring high-quality, reliable outcomes.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="process" class="section-padding">
-        <div class="container text-center">
-            <h2 class="fade-in">Our Simple Process</h2>
-            <p class="fade-in">We make achieving your business objectives straightforward and efficient.</p>
-            <div class="process-steps">
-                <div class="process-step fade-in">
-                    <span class="step-number">01</span>
-                    <div class="step-content">
-                        <h3>Discover & Plan</h3>
-                        <p>We start by thoroughly understanding your business, challenges, and aspirations to define a clear roadmap.</p>
+                <div class="about-content">
+                    <div class="about-text fade-in">
+                        <h3>Our Story and Mission</h3>
+                        <p>Our Business began with a vision to revolutionize how companies approach digital transformation and strategic growth. Founded by a team of industry veterans, we've grown into a reputable firm known for our commitment to innovation, integrity, and measurable results. Our journey has been defined by a relentless pursuit of client satisfaction and a passion for crafting solutions that truly make an impact.</p>
+                        <p>Our mission is to empower businesses with cutting-edge strategies and robust implementation, fostering sustainable development and competitive advantage. We believe in building long-term partnerships, understanding unique business needs, and delivering solutions that exceed expectations. From startups to established enterprises, we are dedicated to helping every client unlock their full potential.</p>
                     </div>
-                </div>
-                <div class="process-step fade-in">
-                    <span class="step-number">02</span>
-                    <div class="step-content">
-                        <h3>Design & Develop</h3>
-                        <p>Our experts craft tailor-made solutions, focusing on quality, efficiency, and scalability, bringing your vision to life.</p>
-                    </div>
-                </div>
-                <div class="process-step fade-in">
-                    <span class="step-number">03</span>
-                    <div class="step-content">
-                        <h3>Deploy & Optimize</h3>
-                        <p>We implement the solution seamlessly, providing ongoing support and optimization to ensure long-term success.</p>
+                    <div class="about-image fade-in">
+                        <img src="images/about.jpg" alt="Team collaborating on a project" style="width:100%;height:380px;object-fit:cover;border-radius:12px">
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="testimonials" class="section-padding">
-        <div class="container text-center">
-            <h2 class="fade-in">What Our Clients Say</h2>
-            <p class="fade-in">Hear directly from those who have experienced the Our Business difference.</p>
-            <div class="testimonial-grid">
-                <div class="testimonial-card fade-in">
-                    <div class="stars">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                    </div>
-                    <p class="quote">"Our Business transformed our digital presence. Their strategic insights and flawless execution led to a significant increase in engagement and conversions. Truly outstanding service!"</p>
-                    <p class="client-name">- Sarah L., Marketing Director</p>
+        <section id="services" class="fade-in">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Our Comprehensive Services</h2>
+                    <p>We offer a diverse range of services designed to address every aspect of your business's needs, ensuring holistic growth and operational efficiency.</p>
                 </div>
-                <div class="testimonial-card fade-in">
-                    <div class="stars">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                <div class="service-grid">
+                    <div class="service-card fade-in">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Strategic Consulting</h3>
+                        <p>Expert guidance to formulate robust strategies that drive growth, market penetration, and long-term success.</p>
                     </div>
-                    <p class="quote">"The team at Our Business is incredibly professional and responsive. They delivered our project ahead of schedule and exceeded our expectations in every way. Highly recommend!"</p>
-                    <p class="client-name">- John D., CEO Tech Innovations</p>
-                </div>
-                <div class="testimonial-card fade-in">
-                    <div class="stars">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <div class="service-card fade-in">
+                        <i class="fas fa-code"></i>
+                        <h3>Web Development</h3>
+                        <p>Building responsive, user-friendly, and high-performance websites tailored to your specific business requirements.</p>
                     </div>
-                    <p class="quote">"From initial consultation to final deployment, Our Business demonstrated unparalleled expertise. Their cloud solutions have revolutionized our internal operations and efficiency."</p>
-                    <p class="client-name">- Emily R., Operations Manager</p>
+                    <div class="service-card fade-in">
+                        <i class="fas fa-bullhorn"></i>
+                        <h3>Digital Marketing</h3>
+                        <p>Comprehensive online marketing campaigns to boost your brand visibility, engage customers, and generate leads.</p>
+                    </div>
+                    <div class="service-card fade-in">
+                        <i class="fas fa-cloud"></i>
+                        <h3>Cloud Solutions</h3>
+                        <p>Implementing scalable and secure cloud infrastructure to optimize your operations and reduce costs.</p>
+                    </div>
+                    <div class="service-card fade-in">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Cybersecurity</h3>
+                        <p>Protecting your valuable assets with advanced cybersecurity measures and robust threat detection systems.</p>
+                    </div>
+                    <div class="service-card fade-in">
+                        <i class="fas fa-users-cog"></i>
+                        <h3>IT Support</h3>
+                        <p>Reliable and prompt technical support to keep your systems running smoothly and efficiently, 24/7.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="contact" class="section-padding">
-        <div class="container text-center">
-            <h2 class="fade-in">Get In Touch</h2>
-            <p class="fade-in">Ready to discuss your next project? We'd love to hear from you.</p>
-            <div class="contact-content">
-                <div class="contact-form fade-in">
-                    <h3>Send Us a Message</h3>
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="fullName">Full Name</label>
-                            <input type="text" id="fullName" name="fullName" required>
+        <section id="why-us" class="fade-in">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Why Choose Our Business?</h2>
+                    <p>Partner with us and experience a commitment to excellence, innovation, and measurable results that set us apart.</p>
+                </div>
+                <div class="why-us-grid">
+                    <div class="why-us-card fade-in">
+                        <i class="fas fa-lightbulb"></i>
+                        <h3>Innovative Solutions</h3>
+                        <p>We leverage the latest technologies and creative thinking to deliver solutions that are not just effective, but future-proof.</p>
+                    </div>
+                    <div class="why-us-card fade-in">
+                        <i class="fas fa-handshake"></i>
+                        <h3>Client-Centric Approach</h3>
+                        <p>Your success is our priority. We work closely with you, adapting our services to meet your unique needs and goals.</p>
+                    </div>
+                    <div class="why-us-card fade-in">
+                        <i class="fas fa-chart-pie"></i>
+                        <h3>Proven Results</h3>
+                        <p>Our track record speaks for itself. We deliver tangible outcomes that contribute directly to your business's growth and profitability.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="process" class="fade-in">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Our Streamlined Process</h2>
+                    <p>We follow a clear, systematic approach to ensure every project is delivered efficiently, transparently, and to the highest standards.</p>
+                </div>
+                <div class="process-grid">
+                    <div class="process-step fade-in">
+                        <h3>Discovery & Analysis</h3>
+                        <p>We begin by thoroughly understanding your business, challenges, and objectives to lay a solid foundation.</p>
+                    </div>
+                    <div class="process-step fade-in">
+                        <h3>Strategy & Planning</h3>
+                        <p>Based on our findings, we craft a bespoke strategy and detailed plan, outlining every step and expected outcome.</p>
+                    </div>
+                    <div class="process-step fade-in">
+                        <h3>Execution & Development</h3>
+                        <p>Our expert team brings the plan to life, employing agile methodologies to ensure flexibility and quality.</p>
+                    </div>
+                    <div class="process-step fade-in">
+                        <h3>Review & Launch</h3>
+                        <p>We rigorously test and refine solutions before a smooth launch, ensuring everything functions perfectly.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="fade-in">
+            <div class="container">
+                <div class="section-header">
+                    <h2>What Our Clients Say</h2>
+                    <p>Hear directly from businesses who have partnered with us and achieved outstanding results.</p>
+                </div>
+                <div class="testimonial-grid">
+                    <div class="testimonial-card fade-in">
+                        <div class="stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                         </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
+                        <blockquote>"Our Business completely transformed our digital presence. Their team was incredibly professional and delivered beyond our expectations!"</blockquote>
+                        <p class="client-name">- Sarah L., CEO of InnovateTech</p>
+                    </div>
+                    <div class="testimonial-card fade-in">
+                        <div class="stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
                         </div>
-                        <div class="form-group">
-                            <label for="phone">Phone</label>
-                            <input type="tel" id="phone" name="phone">
+                        <blockquote>"The strategic consulting provided by Our Business was instrumental in our expansion. Highly recommend their insightful approach."</blockquote>
+                        <p class="client-name">- David K., Founder of GrowthPath Corp.</p>
+                    </div>
+                    <div class="testimonial-card fade-in">
+                        <div class="stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                         </div>
-                        <div class="form-group">
-                            <label for="details">Project Details</label>
-                            <textarea id="details" name="details" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn">Submit Inquiry</button>
-                    </form>
-                    <div id="thank-you-message">
-                        <h3>Thank You!</h3>
-                        <p>Your message has been received. We will get back to you shortly.</p>
+                        <blockquote>"Exceptional IT support and seamless cloud migration. Our operations are smoother than ever, thanks to Our Business!"</blockquote>
+                        <p class="client-name">- Emily R., Operations Manager at NextGen Solutions</p>
                     </div>
                 </div>
-                <div class="contact-info fade-in">
-                    <h3>Contact Information</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> 123 Business Ave, Suite 400, City, State 12345</p>
-                    <p><i class="fas fa-phone"></i> (123) 456-7890</p>
-                    <p><i class="fas fa-envelope"></i> info@ourbusiness.com</p>
-                    <p><i class="fas fa-clock"></i> Mon - Fri: 9:00 AM - 5:00 PM</p>
+            </div>
+        </section>
+
+        <section id="contact" class="fade-in">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Get in Touch with Our Business</h2>
+                    <p>Ready to start your next project or have a question? Contact us today, and let's discuss how we can help your business succeed.</p>
+                </div>
+                <div class="contact-content">
+                    <div class="contact-form fade-in">
+                        <h2>Send Us a Message</h2>
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label for="fullName">Full Name</label>
+                                <input type="text" id="fullName" name="fullName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                            <div class="form-group">
+                                <label for="details">Details</label>
+                                <textarea id="details" name="details" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn">Submit</button>
+                            <div class="submit-message" id="submitMessage">Thank you for your message! We will get back to you shortly.</div>
+                        </form>
+                    </div>
+                    <div class="contact-info fade-in">
+                        <h2>Contact Information</h2>
+                        <ul>
+                            <li>
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>123 Business Avenue, Suite 400<br>Metropolis, State 12345</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-phone-alt"></i>
+                                <span><a href="tel:+1-800-123-4567">+1 (800) 123-4567</a></span>
+                            </li>
+                            <li>
+                                <i class="fas fa-envelope"></i>
+                                <span><a href="mailto:info@ourbusiness.com">info@ourbusiness.com</a></span>
+                            </li>
+                            <li>
+                                <i class="fas fa-clock"></i>
+                                <span>Monday - Friday: 9:00 AM - 5:00 PM (EST)</span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <footer id="footer">
-        <div class="container footer-content">
-            <div class="footer-logo">
+        <div class="container">
+            <a href="#hero" class="footer-logo">
                 <img src="images/logo.png" alt="logo" style="max-height:55px;object-fit:contain;display:block">
-            </div>
-            <nav class="footer-nav">
-                <a href="#about">About</a>
-                <a href="#services">Services</a>
-                <a href="#why-us">Why Us</a>
-                <a href="#process">Process</a>
-                <a href="#contact">Contact</a>
-            </nav>
-            <p class="copyright">&copy; 2026 Our Business. All rights reserved.</p>
+            </a>
+            <ul class="footer-nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#why-us">Why Us</a></li>
+                <li><a href="#process">Process</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <p class="copyright">Copyright &copy; 2026 Our Business. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
-        // Hamburger menu functionality
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            const nav = document.getElementById('nav');
+            const navHeight = nav.offsetHeight;
+            const sections = document.querySelectorAll('section');
+            const navAnchors = document.querySelectorAll('.nav-links a');
+            const fadeElements = document.querySelectorAll('.fade-in');
 
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active'); // Close menu on link click
+            // Hamburger menu toggle
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
             });
-        });
 
-        // Smooth scroll for internal links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                const offset = document.querySelector('#nav').offsetHeight; // Account for sticky nav height
-
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - offset,
-                        behavior: 'smooth'
-                    });
-                }
+            // Close mobile menu on link click
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
             });
-        });
 
-        // Intersection Observer for fade-in effect
-        const fadeElements = document.querySelectorAll('.fade-in');
-
-        const observerOptions = {
-            root: null, // viewport
-            rootMargin: '0px',
-            threshold: 0.2 // Trigger when 20% of the element is visible
-        };
-
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target); // Stop observing once visible
-                }
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const offsetTop = targetElement.offsetTop - navHeight; 
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
             });
-        }, observerOptions);
 
-        fadeElements.forEach(el => observer.observe(el));
+            // Intersection Observer for fade-in animations
+            const observerOptions = {
+                root: null, 
+                rootMargin: '0px',
+                threshold: 0.1 
+            };
 
-        // Intersection Observer for active nav link highlighting
-        const sections = document.querySelectorAll('section');
-        const navLinksList = document.querySelectorAll('#nav .nav-links a');
+            const fadeInObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, observerOptions);
 
-        const navObserverOptions = {
-            root: null,
-            rootMargin: '-50% 0px -50% 0px', // When section is in the middle 50% of viewport
-            threshold: 0
-        };
+            fadeElements.forEach(el => fadeInObserver.observe(el));
 
-        const navObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
+
+            // Intersection Observer for active navigation links
+            const navObserverOptions = {
+                root: null,
+                rootMargin: `-${navHeight - 1}px 0px -${window.innerHeight - navHeight + 1}px 0px`, 
+                threshold: 0 
+            };
+
+            const navObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
                     const id = entry.target.id;
-                    navLinksList.forEach(link => {
-                        link.classList.remove('active');
-                        if (link.getAttribute('href') === `#${id}`) {
-                            link.classList.add('active');
-                        }
+                    const navLink = document.querySelector(`.nav-links a[href="#${id}"]`);
+
+                    if (navLink) {
+                        if (entry.isIntersecting) {
+                            navAnchors.forEach(a => a.classList.remove('active'));
+                            navLink.classList.add('active');
+                        } 
+                    }
+                });
+            }, navObserverOptions);
+
+            sections.forEach(section => {
+                navObserver.observe(section);
+            });
+
+            // Special handling for initial load to set active nav link for hero if it's visible
+            const heroObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navAnchors.forEach(a => a.classList.remove('active'));
+                        document.querySelector('.nav-links a[href="#hero"]').classList.add('active');
+                    }
+                });
+            }, {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.5 
+            });
+            heroObserver.observe(document.getElementById('hero'));
+
+
+            // Contact Form Submission
+            const contactForm = document.getElementById('contactForm');
+            const submitMessage = document.getElementById('submitMessage');
+
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault(); 
+
+                const fullName = document.getElementById('fullName').value;
+                const email = document.getElementById('email').value;
+                const details = document.getElementById('details').value;
+
+                if (fullName && email && details) {
+                    console.log('Form Submitted!', {
+                        fullName: fullName,
+                        email: email,
+                        phone: document.getElementById('phone').value,
+                        details: details
                     });
+
+                    submitMessage.style.display = 'block';
+                    contactForm.reset(); 
+                    
+                    setTimeout(() => {
+                        submitMessage.style.display = 'none';
+                    }, 5000);
+                } else {
+                    alert('Please fill in all required fields (Full Name, Email, Details).');
                 }
             });
-        }, navObserverOptions);
-
-        sections.forEach(section => {
-            navObserver.observe(section);
-        });
-
-        // Contact form submission
-        const contactForm = document.getElementById('contactForm');
-        const thankYouMessage = document.getElementById('thank-you-message');
-
-        contactForm.addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent default form submission
-
-            // Here you would typically send the form data to a server.
-            // For this exercise, we'll just simulate a successful submission.
-
-            contactForm.style.display = 'none'; // Hide the form
-            thankYouMessage.style.display = 'block'; // Show the thank you message
-
-            // Optional: Clear form fields if you want it to reappear later
-            contactForm.reset();
-
-            // Optional: Hide thank you message after a few seconds
-            // setTimeout(() => {
-            //     thankYouMessage.style.display = 'none';
-            //     contactForm.style.display = 'block';
-            // }, 5000);
         });
     </script>
 </body>
